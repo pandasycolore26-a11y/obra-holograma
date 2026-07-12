@@ -5,10 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holograma</title>
     <style>
-        * { margin: 0; padding: 0; }
-        body, html { width: 100%; height: 100%; background: #000; overflow: hidden; }
-        iframe { width: 100vw; height: 100vh; border: none; pointer-events: none; }
-    </style>
+    * { margin: 0; padding: 0; box-size: border-box; }
+    body, html { width: 100%; height: 100%; background-color: #000; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+    
+    /* Si el celular está en vertical, rotamos el video */
+    @media (orientation: portrait) {
+        video {
+            width: 100vh;
+            height: 100vw;
+            transform: rotate(90deg);
+            object-fit: contain;
+        }
+    }
+
+    /* Si el celular ya está en horizontal, lo dejamos normal */
+    @media (orientation: landscape) {
+        video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+        }
+    }
+</style>
 </head>
 <body>
     <iframe src="https://www.youtube.com/embed/zAHABDYMxcg?autoplay=1&loop=1&playlist=zAHABDYMxcg&controls=0&mute=1&playsinline=1" allow="autoplay"></iframe>
