@@ -2,33 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holograma</title>
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-        body, html { 
-            width: 100%; 
-            height: 100%; 
-            background-color: #000; 
-            overflow: hidden; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-        }
-        video { 
-            width: 100vw; 
-            height: 100vh; 
-            /* Esto obliga al video a estirarse por completo llenando la pantalla */
-            object-fit: cover; 
-            background: #000;
-        }
+        * { margin: 0; padding: 0; }
+        body, html { width: 100%; height: 100%; background: #000; overflow: hidden; }
+        iframe { width: 100vw; height: 100vh; border: none; pointer-events: none; }
     </style>
 </head>
 <body>
-    <video src="tu-video.mp4" autoplay loop muted playsinline></video>
+    <iframe src="https://www.youtube.com/embed/zAHABDYMxcg&t?autoplay=1&loop=1&playlist=zAHABDYMxcg&t&controls=0&mute=1&playsinline=1" allow="autoplay"></iframe>
 </body>
 </html>
