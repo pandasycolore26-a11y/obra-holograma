@@ -1,16 +1,175 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holograma</title>
-    <style>
-        * { margin: 0; padding: 0; }
-        body, html { width: 100%; height: 100%; background: #000; overflow: hidden; }
-        iframe { width: 100vw; height: 100vh; border: none; pointer-events: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Holograma</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    background:black;
+    overflow:hidden;
+}
+
+#inicio{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    z-index:100;
+    text-align:center;
+    padding:30px;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 30px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+#contenedor{
+    width:100vw;
+    height:100vh;
+    display:none;
+    background:black;
+}
+
+iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+#rotar{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    color:white;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    z-index:200;
+    padding:30px;
+    font-size:22px;
+}
+
+</style>
 </head>
+
 <body>
-    <iframe src="https://www.youtube.com/embed/zAHABDYMxcg&t?autoplay=1&loop=1&playlist=zAHABDYMxcg&t&controls=0&mute=1&playsinline=1" allow="autoplay"></iframe>
+
+<div id="inicio">
+
+    <h2>Experiencia Holográfica</h2>
+
+    <p>
+        Coloca tu teléfono horizontalmente y presiona iniciar.
+    </p>
+
+    <button onclick="iniciar()">
+        Iniciar experiencia
+    </button>
+
+</div>
+
+<div id="rotar">
+    Gira tu dispositivo horizontalmente.
+</div>
+
+<div id="contenedor">
+
+<iframe
+id="youtube"
+allow="autoplay; fullscreen"
+allowfullscreen
+src="">
+</iframe>
+
+</div>
+
+<script>
+
+function comprobarOrientacion(){
+
+    if(window.innerHeight >
+       window.innerWidth){
+
+        document.getElementById("rotar")
+        .style.display="flex";
+
+    }else{
+
+        document.getElementById("rotar")
+        .style.display="none";
+
+    }
+
+}
+
+async function iniciar(){
+
+    document.getElementById("inicio")
+    .style.display="none";
+
+    document.getElementById("contenedor")
+    .style.display="block";
+
+    try{
+
+        if(document.documentElement.requestFullscreen){
+
+            await document.documentElement
+            .requestFullscreen();
+
+        }
+
+    }catch(e){}
+
+    try{
+
+        if(screen.orientation &&
+           screen.orientation.lock){
+
+            await screen.orientation
+            .lock("landscape");
+
+        }
+
+    }catch(e){}
+
+    document.getElementById("youtube")
+    .src =
+    "https://www.youtube.com/embed/zAHABDYMxcg?autoplay=1&mute=1&loop=1&playlist=zAHABDYMxcg&controls=0&rel=0&modestbranding=1&playsinline=1";
+
+    comprobarOrientacion();
+
+}
+
+window.addEventListener(
+    "resize",
+    comprobarOrientacion
+);
+
+</script>
+
 </body>
 </html>
